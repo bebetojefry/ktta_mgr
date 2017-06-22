@@ -1,0 +1,16 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{{ form_row(form.firstName) }}
+{{ form_row(form.lastName) }}
+{{ form_row(form.fatherName) }}
+{{ form_row(form.motherName) }}
+{{ form_row(form.gender) }}
+{{ form_row(form.dob) }}
+{{ form_row(form.birthPlace) }}
+{{ form_rest(form) }}
+{{ form_errors(form) }}
+
+<script type="text/javascript">
+    $('#{{ form.dob.vars.id }}').datepicker({});
+    $('#{{ form.passportIssueDate.vars.id }}').datepicker({});
+    $('#{{ form.passportExpiryDate.vars.id }}').datepicker({});
+</script>

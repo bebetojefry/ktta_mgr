@@ -86,3 +86,9 @@ app_front_admin_players:
     path:     /players
     host:     "%domain_admin%"
     defaults: { _controller: AppFrontBundle:Player:index }
+    
+app_front_admin_new_player:
+    path:     /players/new
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Player:new }
+    

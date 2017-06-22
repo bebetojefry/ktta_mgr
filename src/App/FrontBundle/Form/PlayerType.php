@@ -20,7 +20,7 @@ class PlayerType extends AbstractType
             ->add('fatherName')
             ->add('motherName')
             ->add('gender')
-            ->add('dob')
+            ->add('dob', 'text')
             ->add('birthPlace')
             ->add('perAddress')
             ->add('email')
@@ -34,17 +34,27 @@ class PlayerType extends AbstractType
             ->add('otherName')
             ->add('passportNo')
             ->add('passportIssuePlace')
-            ->add('passportIssueDate')
-            ->add('passportExpiryDate')
+            ->add('passportIssueDate', 'text')
+            ->add('passportExpiryDate', 'text')
             ->add('height')
             ->add('weight')
             ->add('year')
             ->add('playerId')
             ->add('photo')
             ->add('birthCertificate')
-            ->add('birthState')
-            ->add('district')
-        ;
+            ->add('birthState', 'entity', array(
+                'class' => 'AppFrontBundle:State',
+                'property' => 'stateName',
+                'multiple' => false,
+                'expanded' => false,
+            ))
+            ->add('district', 'entity', array(
+                'class' => 'AppFrontBundle:District',
+                'property' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+            ))
+            ->add('Submit', 'submit', array('label' => 'player.submit'));
     }
     
     /**

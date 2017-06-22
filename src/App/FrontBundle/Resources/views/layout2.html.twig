@@ -35,7 +35,7 @@
         </div>
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">{{ 'menu.hello' | trans }} {{ app.user.getUsedName() }} {% if is_granted('ROLE_ADMIN') %} [Admin] {% endif %}</a>
+                <img src="{{ asset('images/logo.jpg') }}" style="margin: 10px 0;" />
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -58,10 +58,10 @@
                     </ul>
                 </li>
                 <li>
-                    <div class="lang_container">
+                    {#<div class="lang_container">
                         <a {% if app.request.locale == 'en' %}class="active_locale"{% endif %} href="{{ path('set_lang', {_locale: 'en', route: path(app.request.get('_route'), app.request.get('_route_params')) | urlencrypt}) }}"><img src="{{ asset('bundles/appfront/images/flag_en.png') }}" /></a>
                         <a {% if app.request.locale == 'de' %}class="active_locale"{% endif %} href="{{ path('set_lang', {_locale: 'de', route: path(app.request.get('_route'), app.request.get('_route_params')) | urlencrypt}) }}"><img src="{{ asset('bundles/appfront/images/flag_de.png') }}" /></a>
-                    </div>
+                    </div>#}
                 </li>
             </ul>
         </nav>

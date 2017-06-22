@@ -1,19 +1,150 @@
 App\FrontBundle\Entity\Professional:
-    user_pro_1:
-        firstname: Bebeto
-        lastname: Jefry
+    admin_user:
+        firstname: KTTA
+        lastname: Admin
         gender: 1
-        phone: 9747143513
+        phone: 9999999999
         username: admin
-        password: admin
-        locale: de
-        status: true
-    user_pro_2:
-        firstname: Bebeto
-        lastname: Jefry
+        password: ktta_admin123
+        locale: en
+        status: true        
+    dist_user_1:
+        firstname: Sulaiman
+        lastname: null
         gender: 1
-        phone: 9747143513
-        username: bebeto
-        password: bebeto12345
+        phone: 9447020713
+        username: ktta_ksd
+        password: ktta_ksd123
         locale: en
         status: true
+        district: @district_1
+    dist_user_2:
+        firstname: Abdul
+        lastname: Naseer T
+        gender: 1
+        phone: 9495142986
+        username: ktta_knr
+        password: ktta_knr123
+        locale: en
+        status: true
+        district: @district_2
+    dist_user_3:
+        firstname: Jacob
+        lastname: Joseph
+        gender: 1
+        phone: 9539386376
+        username: ktta_wyd
+        password: ktta_wyd123
+        locale: en
+        status: true
+        district: @district_3
+    dist_user_4:
+        firstname: Sreenivasan
+        lastname: V
+        gender: 1
+        phone: 9847476516
+        username: ktta_kkd
+        password: ktta_kkd123
+        locale: en
+        status: true
+        district: @district_4
+    dist_user_5:
+        firstname: Sebastian
+        lastname: Jacob
+        gender: 1
+        phone: 9447607597
+        username: ktta_mlp
+        password: ktta_mlp123
+        locale: en
+        status: true
+        district: @district_5
+    dist_user_6:
+        firstname: Dileep
+        lastname: Kumar
+        gender: 1
+        phone: 9447778732
+        username: ktta_pkd
+        password: ktta_pkd123
+        locale: en
+        status: true
+        district: @district_6
+    dist_user_7:
+        firstname: Thomas
+        lastname: MT
+        gender: 1
+        phone: 9446533622
+        username: ktta_tcr
+        password: ktta_tcr123
+        locale: en
+        status: true
+        district: @district_7
+    dist_user_8:
+        firstname: Joe
+        lastname: Antony
+        gender: 1
+        phone: 9497023353
+        username: ktta_ekm
+        password: ktta_ekm123
+        locale: en
+        status: true
+        district: @district_8
+    dist_user_9:
+        firstname: Vijaya
+        lastname: Kumar
+        gender: 1
+        phone: 9497546300
+        username: ktta_idk
+        password: ktta_idk123
+        locale: en
+        status: true
+        district: @district_9
+    dist_user_10:
+        firstname: Abraham
+        lastname: Kurian
+        gender: 1
+        phone: 9847031757
+        username: ktta_ktm
+        password: ktta_ktm123
+        locale: en
+        status: true
+        district: @district_10
+    dist_user_11:
+        firstname: Venkitaraman
+        lastname: PK
+        gender: 1
+        phone: 9446089360
+        username: ktta_alp
+        password: ktta_alp123
+        locale: en
+        status: true
+        district: @district_11
+    dist_user_12:
+        firstname: Rajan
+        lastname: J
+        gender: 1
+        phone: 9447963484
+        username: ktta_pta
+        password: ktta_pta123
+        locale: en
+        status: true
+        district: @district_12
+    dist_user_13:
+        firstname: Samson
+        lastname: null
+        gender: 1
+        phone: 9995804907
+        username: ktta_klm
+        password: ktta_klm123
+        locale: en
+        status: true
+        district: @district_13
+    dist_user_14:
+        firstname: Arun
+        lastname: MJ
+        gender: 1
+        phone: 9037044471
+        username: ktta_tvm
+        password: ktta_tvm123
+        locale: en
+        status: true
+        district: @district_14

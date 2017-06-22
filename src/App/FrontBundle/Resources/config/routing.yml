@@ -79,3 +79,10 @@ app_delete_product:
     path:   /product/delete/{id}
     defaults:   { _controller: AppFrontBundle:Product:delete }
     host:   "%domain_admin%"
+
+# KTTA Routes
+
+app_front_admin_players:
+    path:     /players
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Player:index }

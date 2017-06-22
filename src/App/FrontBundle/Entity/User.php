@@ -46,7 +46,7 @@ abstract class User implements AdvancedUserInterface, EncoderAwareInterface, Equ
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      * @Expose
      */
     private $lastname;
@@ -137,6 +137,12 @@ abstract class User implements AdvancedUserInterface, EncoderAwareInterface, Equ
      * @Groups({"Me"})
      */
     private $apikey;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="District")
+     * @ORM\JoinColumn(name="district", referencedColumnName="id", nullable=true)
+     */
+    private $district;
 
     /**
      * Constructor
@@ -645,5 +651,29 @@ abstract class User implements AdvancedUserInterface, EncoderAwareInterface, Equ
         }
 
         return null; // use the default encoder
+    }
+
+    /**
+     * Set district
+     *
+     * @param \App\FrontBundle\Entity\District $district
+     *
+     * @return User
+     */
+    public function setDistrict(\App\FrontBundle\Entity\District $district = null)
+    {
+        $this->district = $district;
+
+        return $this;
+    }
+
+    /**
+     * Get district
+     *
+     * @return \App\FrontBundle\Entity\District
+     */
+    public function getDistrict()
+    {
+        return $this->district;
     }
 }

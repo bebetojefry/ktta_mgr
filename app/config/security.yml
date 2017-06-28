@@ -29,7 +29,7 @@ security:
             form_login:
                 login_path: /login
                 check_path: /login_check
-                default_target_path: /players
+                default_target_path: /
                 always_use_default_target_path: false
                 use_referer: true
                 csrf_provider: security.csrf.token_manager
@@ -88,3 +88,4 @@ security:
       - { path: ^/products/save/([0-9]+), roles: ROLE_PROFESSIONAL }
       - { path: ^/, roles: ROLE_API_USER, host: api\.symfony\.local$" }
       - { path: ^/players, roles: ROLE_PROFESSIONAL }
+      - { path: ^/, roles: ROLE_PROFESSIONAL }

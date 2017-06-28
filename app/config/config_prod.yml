@@ -7,6 +7,7 @@ parameters:
     database_name: ktta_mgr
     database_user: ktta_mgr
     database_password: ktta_mgr!23
+    domain_admin: manager.ktta.in
 
 #framework:
 #    validation:

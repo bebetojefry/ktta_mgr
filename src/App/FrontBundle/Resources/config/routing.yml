@@ -4,10 +4,6 @@ app_front_homepage_post_view:
 app_front_homepage_post_edit:
     path:     /edit/{name}
     defaults: { _controller: AppFrontBundle:Default:edit }
-app_front_admin_homepage:
-    path:     /
-    host:     "%domain_admin%"
-    defaults: { _controller: AppFrontBundle:User:login }
 app_front_admin_products:
     path:     /products
     host:     "%domain_admin%"
@@ -85,6 +81,11 @@ app_delete_product:
 
 # KTTA Routes
 
+app_front_admin_all_players:
+    path:     /
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Player:all }
+    
 app_front_admin_players:
     path:     /players/{status}
     host:     "%domain_admin%"

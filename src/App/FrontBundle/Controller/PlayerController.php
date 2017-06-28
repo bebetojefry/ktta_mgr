@@ -16,6 +16,26 @@ use App\FrontBundle\Helper\FormHelper;
  */
 class PlayerController extends Controller {
     
+    public function allAction(Request $request) {
+        if($district = $this->getUser()->getDistrict()){
+            $condition['district'] = $district;
+        }
+        
+        $status = array(
+            Player::NEW_PLAYER => '<b style="color:#337ab7">New Player</b>',
+            Player::SUBMITTED => '<b style="color:#337ab7">Submtted for Approval</b>',
+            Player::APPROVED => '<b style="color:#5cb85c">Approved</b>',
+            Player::REJECTED =>  '<b style="color:#d9534f">Rejected</b>'
+            
+        );
+        
+        $players = $this->getDoctrine()->getManager()->getRepository('AppFrontBundle:Player')->findBy($condition);
+        return $this->render('AppFrontBundle:Player:index.html.twig', array(
+            'players' => $players,
+            'status' => $status
+        ));
+    }
+    
     public function indexAction(Request $request, $status) {
         $condition = array('status' => $status);
         if($district = $this->getUser()->getDistrict()){

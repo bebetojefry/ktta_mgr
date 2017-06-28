@@ -17,6 +17,7 @@ use App\FrontBundle\Helper\FormHelper;
 class PlayerController extends Controller {
     
     public function allAction(Request $request) {
+        $condition = array();
         if($district = $this->getUser()->getDistrict()){
             $condition['district'] = $district;
         }

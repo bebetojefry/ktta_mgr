@@ -50,6 +50,9 @@ app_front_login:
 app_front_login_check:
     path:     /login_check
     defaults: { _controller: AppFrontBundle:User:logincheck }
+app_front_login_password_reset:
+    path:     /password/reset
+    defaults: { _controller: AppFrontBundle:User:password }
 app_front_logout:
     path: /logout
 app_front_admin_login:
@@ -83,12 +86,36 @@ app_delete_product:
 # KTTA Routes
 
 app_front_admin_players:
-    path:     /players
+    path:     /players/{status}
     host:     "%domain_admin%"
-    defaults: { _controller: AppFrontBundle:Player:index }
+    defaults: { _controller: AppFrontBundle:Player:index, status: 0 }
     
 app_front_admin_new_player:
-    path:     /players/new
+    path:     /players/0/new
     host:     "%domain_admin%"
     defaults: { _controller: AppFrontBundle:Player:new }
     
+app_front_admin_edit_player:
+    path:     /players/{id}/edit
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Player:edit }
+    
+app_front_admin_remove_player:
+    path:     /players/{id}/delete
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Player:delete }
+    
+app_front_admin_show_player:
+    path:     /players/{id}/details
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Player:detail }
+    
+app_front_admin_player_status:
+    path:     /players/{id}/status
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Player:status }
+    
+app_front_admin_player_transfer:
+    path:     /players/{id}/transfer
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Player:transfer }

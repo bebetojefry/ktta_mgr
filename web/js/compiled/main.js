@@ -1374,7 +1374,7 @@ modal.controller('MainCtrl', function ($scope, $http) {
         } else {
             alert(Translator.trans('globals.error.something'));
         }
-        location.reload(true);
+        //location.reload(true);
     }
     
     $scope.processResponse = function(response){
@@ -1464,8 +1464,11 @@ $(function() {
         height = height - topOffset;
         if (height < 1) height = 1;
         if (height > topOffset) {
-            $("#page-wrapper").css("min-height", (height) + "px");
+            $("#page-wrapper").css("height", (height) + "px");
         }
+        
+        var h = $(window).height() - $('.navbar-static-top').height() - 80;
+        $(".panel-body").css("height", (h) + "px");
     });
 
     var url = window.location;
@@ -1475,4 +1478,28 @@ $(function() {
     if (element.is('li')) {
         element.addClass('active');
     }
+    
+    $('.print-btn').on('click', function(){
+       PrintElem($(this).attr('print_elem_id'));
+    });
 });
+
+function PrintElem(elem)
+{
+    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('</head>'+$('HEAD').html()+'<body>');
+    mywindow.document.write(document.getElementById(elem).innerHTML);
+    mywindow.document.write('</body></html>');
+
+    $(mywindow).load(function(){
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+
+        mywindow.print();
+        mywindow.close();
+    });
+
+    return true;
+}

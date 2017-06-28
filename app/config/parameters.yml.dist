@@ -25,3 +25,5 @@ parameters:
     domain_admin: admin.symfony.local
     domain_consumer: symfony.local
     domain_api: api.symfony.local
+    
+    players_id_path: '%kernel.root_dir%/config/player.txt'

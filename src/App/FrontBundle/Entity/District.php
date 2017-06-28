@@ -31,6 +31,13 @@ class District
     /**
      * @var string
      *
+     * @ORM\Column(name="code", type="string", length=255)
+     */
+    private $code;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -99,5 +106,29 @@ class District
     public function getState()
     {
         return $this->state;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     *
+     * @return District
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }

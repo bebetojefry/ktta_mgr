@@ -1,0 +1,207 @@
+{% extends "AppFrontBundle::layout2.html.twig" %}
+
+{% block title %}Player Details{% endblock %}
+
+{% block style %}
+   
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="cert-download">
+                        Player Info : {{ status[player.getStatus()]|raw }}
+                        <a class="cert" href="{{ asset('uploads/players/'~player.getBirthCertificate()) }}" target="_blank"><img src="{{ asset('images/pdf_doc_download.png') }}" /></a>
+                    </span>
+                    <button type="button" class="btn btn-primary btn-xs pull-right print-btn" print_elem_id="player-info">Print</button>
+                    <button type="button" ng-click="toggleModal($event)" formAction="{{ path('app_front_admin_edit_player', {'id' : player.id }) }}" modalTitle="{{ 'player.title.edit' | trans }}" modalUrl="{{ path('app_front_admin_edit_player', {'id' : player.id }) }}" class="btn btn-primary btn-xs pull-right margin-right-10">{{ 'player.btn.edit' | trans }}</button>
+                    {% if is_granted('ROLE_ADMIN') and player.getStatus() == constant('App\\FrontBundle\\Entity\\Player::SUBMITTED') %}
+                        <button type="button" ng-click="confirmExecuteUrl($event)" cofirmText="{{ 'player.msg.approveConfirm' | trans }}" targetUrl="{{ path('app_front_admin_player_status', {'id' : player.id, 'status': constant('App\\FrontBundle\\Entity\\Player::APPROVED') }) }}" class="btn btn-success btn-xs pull-right margin-right-10">Approve</button>
+                    {% endif %}
+                    
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <button type="button" ng-click="toggleModal($event)" formAction="{{ path('app_front_admin_player_transfer', {'id' : player.id }) }}" modalTitle="Transfer Player" modalUrl="{{ path('app_front_admin_player_transfer', {'id' : player.id }) }}" class="btn btn-primary btn-xs pull-right margin-right-10">Transfer</button>
+                    {% endif %}
+                    
+                    {% if is_granted('ROLE_ADMIN') and (player.getStatus() == constant('App\\FrontBundle\\Entity\\Player::SUBMITTED') or player.getStatus() == constant('App\\FrontBundle\\Entity\\Player::APPROVED')) %}
+                        <button type="button" ng-click="confirmExecuteUrl($event)" cofirmText="{{ 'player.msg.rejectConfirm' | trans }}" targetUrl="{{ path('app_front_admin_player_status', {'id' : player.id, 'status': constant('App\\FrontBundle\\Entity\\Player::REJECTED') }) }}" class="btn btn-danger btn-xs pull-right margin-right-10">Reject</button>
+                    {% endif %}
+                    
+                    {% if player.getStatus() == constant('App\\FrontBundle\\Entity\\Player::NEW_PLAYER') or player.getStatus() == constant('App\\FrontBundle\\Entity\\Player::REJECTED') %}
+                        <button type="button" ng-click="confirmExecuteUrl($event)" cofirmText="{{ 'player.msg.submitConfirm' | trans }}" targetUrl="{{ path('app_front_admin_player_status', {'id' : player.id, 'status': constant('App\\FrontBundle\\Entity\\Player::SUBMITTED') }) }}" class="btn btn-primary btn-xs pull-right margin-right-10">Submit for Approval</button>
+                    {% endif %}
+                </div>
+                <div class="panel-body" id="player-info">
+                    <div class="player-detail" id="player-detail">
+                        <div class="row header-wrapper">
+                            <div class="col-md-3 col-sm-3 head-block">
+                                <img class="logo" src="{{ asset('images/logo-icon.jpg') }}" />
+                                <span class="player-id">KTTA ID: {{ player.getPlayerId() }}</span>
+                            </div>
+                            <div class="col-md-6 col-sm-6 head-block">
+                                <span class="title">KERALA TABLE TENNIS ASSOCIATION</span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 head-block">
+                                <img class="player-photo" src="{{ asset('uploads/players/'~player.getPhoto()) }}" />
+                            </div>
+                        </div>
+                        <table>
+                            <tr>
+                                <td>Year</td>
+                                <td colspan="3">{{ player.getYear() }}</td>
+                            </tr>
+                            <tr>
+                                <td>State</td>
+                                <td>{{ player.getDistrict().getState().getStateName() }}</td>
+                                <td style="width: 250px;">District</td>
+                                <td>{{ player.getDistrict().getName() }}</td>
+                            </tr>
+                            <tr>
+                                <td>First Name</td>
+                                <td colspan="3">{{ player.getFirstName() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Last Name</td>
+                                <td colspan="3">{{ player.getLastName() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Father Name</td>
+                                <td colspan="3">{{ player.getFatherName() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Mother Name</td>
+                                <td colspan="3">{{ player.getMotherName() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td colspan="3">{{ player.getGender() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Date Of Birth</td>
+                                <td colspan="3">{{ player.getDob()|date('d/m/Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Place Of Birth</td>
+                                <td colspan="3">{{ player.getBirthPlace() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Birth State</td>
+                                <td colspan="3">{{ player.getBirthState().getStateName() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Permanent Address</td>
+                                <td colspan="3">{{ player.getPerAddress() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Email Address</td>
+                                <td colspan="3">{{ player.getEmail() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Telephone No</td>
+                                <td colspan="3">{{ player.getTel() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Mobile No</td>
+                                <td colspan="3">{{ player.getMob() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Address of School</td>
+                                <td colspan="3">{{ player.getSchoolAddress() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Class Studying</td>
+                                <td colspan="3">{{ player.getStudyClass() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Office Address</td>
+                                <td colspan="3">{{ player.getOfficeAddress() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Blood Group</td>
+                                <td colspan="3">{{ player.getBloodGroup() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Passport Name</td>
+                                <td colspan="3">{{ player.getPassportName() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Other Name</td>
+                                <td colspan="3">{{ player.getOtherName() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Passport No</td>
+                                <td colspan="3">{{ player.getPassportNo() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Passport Issue Place</td>
+                                <td colspan="3">{{ player.getPassportIssuePlace() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Passport Issue Date</td>
+                                <td colspan="3">{{ player.getPassportIssueDate()|date('d/m/Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Passport Expiry Date</td>
+                                <td colspan="3">{{ player.getPassportExpiryDate()|date('d/m/Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Height</td>
+                                <td colspan="3">{{ player.getHeight() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Weight</td>
+                                <td>{{ player.getWeight() }}</td>
+                                <td style="width: 250px;">Weight</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>District to which registered</td>
+                                <td colspan="3">{{ player.getDistrict().getName() }}</td>
+                            </tr>
+                        </table>
+                        <table class="sign-footer">
+                            <tr>
+                                <td>
+                                    <div class="col-md-6 col-sm-6 head-block">
+                                        <span>Signature:</span>
+                                        <span>Player/Guardian:</span>
+                                        <span>Date:</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-6 col-sm-6 head-block">
+                                        <span>Signature:</span>
+                                        <span>Secretary-KTTA:</span>
+                                        <span>Seal & Date:</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="col-md-6 col-sm-6 head-block">
+                                        <span>Signature:</span>
+                                        <span>District Secretary:</span>
+                                        <span>Seal & Date:</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-6 col-sm-6 head-block">
+                                        <span>Reciept Number:</span>
+                                        <span>Date of Payment:</span>
+                                        <span>Amount:</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock%}
+
+{% block javascript %}
+    
+{% endblock %}

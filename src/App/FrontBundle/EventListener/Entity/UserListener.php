@@ -8,7 +8,7 @@ use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use App\FrontBundle\Entity\User;
 use App\FrontBundle\Entity\Product;
-
+use App\FrontBundle\Entity\Player;
 class UserListener
 {
     private $container;
@@ -34,15 +34,23 @@ class UserListener
     public function postPersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-
-        if($entity instanceof Product) {
+        
+        if (null === $token = $this->container->get('security.context')->getToken()) {
+            return;
+        }
+        
+        if (!is_object($user = $token->getUser())) {
+            return;
+        }
+        
+        if($entity instanceof Player) {
             // creating the ACL
             $aclProvider = $this->container->get('security.acl.provider');
             $objectIdentity = ObjectIdentity::fromDomainObject($entity);
             $acl = $aclProvider->createAcl($objectIdentity);
 
             // retrieving the security identity of the currently logged-in user
-            $securityIdentity = UserSecurityIdentity::fromAccount($entity->getUser());
+            $securityIdentity = UserSecurityIdentity::fromAccount($user);
 
             // grant owner access
             $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);

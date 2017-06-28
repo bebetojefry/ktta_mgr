@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\FrontBundle\Entity\PlayerRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Player
 {
@@ -17,6 +18,18 @@ class Player
     const APPROVED = 1;
     const SUBMITTED = 2;
     const REJECTED = 3;
+    
+    const NO_ACCESS = 'You dont have access to this player.';
+
+    protected static $uploadDir;
+    
+    protected static $playerDistrit;
+    
+    protected static $idPath;
+
+    protected $temp;
+    
+    protected $temp_cert;
     
     /**
      * @var integer
@@ -854,6 +867,11 @@ class Player
      */
     public function setPhoto($photo)
     {
+        
+        if(is_string($this->photo)){
+            $this->temp = $this->photo;
+        }
+        
         $this->photo = $photo;
 
         return $this;
@@ -878,6 +896,11 @@ class Player
      */
     public function setBirthCertificate($birthCertificate)
     {
+        
+        if(is_string($this->birthCertificate)){
+            $this->temp_cert = $this->birthCertificate;
+        }
+        
         $this->birthCertificate = $birthCertificate;
 
         return $this;
@@ -986,5 +1009,99 @@ class Player
         );
         
         return $status[$this->status];
+    }
+    
+    public static function setUploadDir($dir)
+    {
+        self::$uploadDir = $dir;
+    }
+    
+    public static function setPlayerDistrict($district)
+    {
+        self::$playerDistrit = $district;
+    }
+    
+    /**
+     * @ORM\PreRemove()
+     */
+    public function onRemove()
+    {
+        if(is_string($this->photo)){
+            $player_photo = self::$uploadDir . $this->photo;
+            @unlink($player_photo);
+        }
+        
+        if(is_string($this->birthCertificate)){
+            $player_cert = self::$uploadDir . $this->birthCertificate;
+            @unlink($player_cert);
+        }
+    }
+    
+    public static function setIdPath($path){
+        self::$idPath = $path;
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function onInsertUpdate()
+    {
+        // set player Id
+        if($this->getId() == null){
+            $this->setStatus(Self::NEW_PLAYER);
+            $this->generatePlayerId();
+        }
+        
+        // upload player photo
+        $file = $this->getPhoto();
+        if(is_object($file)) {
+            if(is_string($this->temp)){
+                $player_photo = self::$uploadDir . $this->temp;
+                @unlink($player_photo);
+            }
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move(self::$uploadDir, $fileName);
+            $this->setPhoto(basename($fileName));
+        } else {
+            if($this->temp){
+                $this->setPhoto($this->temp);
+            }
+        }
+        
+        // upload playr certificate
+        $file_cert = $this->getBirthCertificate();
+        if(is_object($file_cert)) {
+            if(is_string($this->temp_cert)){
+                $player_cert = self::$uploadDir . $this->temp_cert;
+                @unlink($player_cert);
+            }
+            $fileName = md5(uniqid()) . '.' . $file_cert->guessExtension();
+            $file_cert->move(self::$uploadDir, $fileName);
+            $this->setBirthCertificate(basename($fileName));
+        } else {
+            if($this->temp_cert){
+                $this->setBirthCertificate($this->temp_cert);
+            }
+        }
+    }
+    
+    private function generatePlayerId(){
+        $val = @file_get_contents(self::$idPath);
+        if($this->getDistrict()){
+            $id = $this->getDistrict()->getCode().'-'.($val + 1);
+        } else {        
+            $id = $val + 1;
+        }
+        
+        @file_put_contents(self::$idPath, $val + 1);
+        
+        $this->setPlayerId($id);
+    }
+    
+    public function refreshPlayerId(){
+        $val = explode('-', $this->getPlayerId());
+        $newId =  $this->getDistrict()->getCode().'-'.$val[1];
+        $this->setPlayerId($newId);
     }
 }

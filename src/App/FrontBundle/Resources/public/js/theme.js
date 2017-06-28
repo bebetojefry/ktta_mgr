@@ -22,8 +22,11 @@ $(function() {
         height = height - topOffset;
         if (height < 1) height = 1;
         if (height > topOffset) {
-            $("#page-wrapper").css("min-height", (height) + "px");
+            $("#page-wrapper").css("height", (height) + "px");
         }
+        
+        var h = $(window).height() - $('.navbar-static-top').height() - 100;
+        $(".panel-body").css("height", (h) + "px");
     });
 
     var url = window.location;
@@ -33,4 +36,8 @@ $(function() {
     if (element.is('li')) {
         element.addClass('active');
     }
+    
+    $('.print-btn').on('click', function(){
+        window.print();
+    });
 });

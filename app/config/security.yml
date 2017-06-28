@@ -87,3 +87,4 @@ security:
       - { path: ^/products/remove/([0-9]+), roles: ROLE_PROFESSIONAL }
       - { path: ^/products/save/([0-9]+), roles: ROLE_PROFESSIONAL }
       - { path: ^/, roles: ROLE_API_USER, host: api\.symfony\.local$" }
+      - { path: ^/players, roles: ROLE_PROFESSIONAL }

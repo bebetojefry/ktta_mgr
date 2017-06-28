@@ -1,14 +1,26 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
-{{ form_row(form.firstName) }}
-{{ form_row(form.lastName) }}
-{{ form_row(form.fatherName) }}
-{{ form_row(form.motherName) }}
-{{ form_row(form.gender) }}
-{{ form_row(form.dob) }}
-{{ form_row(form.birthPlace) }}
-{{ form_rest(form) }}
-{{ form_errors(form) }}
-
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.firstName) }}
+        {{ form_row(form.lastName) }}
+        {{ form_row(form.fatherName) }}
+        {{ form_row(form.motherName) }}
+        {{ form_row(form.gender) }}
+        {{ form_row(form.dob) }}
+        {{ form_row(form.birthPlace) }}
+        {{ form_row(form.perAddress) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.tel) }}
+        {{ form_row(form.mob) }}
+        {{ form_row(form.schoolAddress) }}
+        {{ form_row(form.studyClass) }}
+        {{ form_row(form.officeAddress) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_rest(form) }}
+    </div>
+    {{ form_errors(form) }}
+</div>
 <script type="text/javascript">
     $('#{{ form.dob.vars.id }}').datepicker({});
     $('#{{ form.passportIssueDate.vars.id }}').datepicker({});

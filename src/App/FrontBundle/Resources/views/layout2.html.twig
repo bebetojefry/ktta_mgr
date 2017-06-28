@@ -7,24 +7,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>{% block title %}{% endblock %}</title>
-    {% stylesheets
-        'assets/vendor/bootstrap/dist/css/bootstrap.min.css'
-        'assets/vendor/metisMenu/dist/metisMenu.min.css'
-        'assets/vendor/font-awesome/css/font-awesome.min.css'
-        'assets/vendor/bootstrap3-dialog/src/css/bootstrap-dialog.css'
-        'assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.css'
-        'assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css'
-        'assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.css'
-        'bundles/appfront/css/*'
-        filter='cssrewrite' output='css/compiled/main.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
-    {% stylesheets '@AppFrontBundle/Resources/public/less/style.less' output='css/compiled/app_less.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
-    {% stylesheets '@AppFrontBundle/Resources/public/sass/style.scss' output='css/compiled/app_sass.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap3-dialog/src/css/bootstrap-dialog.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/appfront/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/appfront/css/theme.css') }}">
     {% block style %}{% endblock %}
 </head>
 <body ng-app="modal">
@@ -38,7 +29,20 @@
         </div>
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <img src="{{ asset('images/logo.jpg') }}" style="margin: 10px 0;" />
+                <img src="{{ asset('images/logo.jpg') }}" style="margin: 15px 30px;" />
+            </div>
+            <div id="topnav">
+                <ul>
+                    <li><a href="{{ path('app_front_admin_players', {status: 0}) }}">New Players</a></li>
+                    <li><a href="{{ path('app_front_admin_players', {status: 2}) }}">Submitted</a></li>
+                    <li><a href="{{ path('app_front_admin_players', {status: 1}) }}">Approved</a></li>
+                    <li><a href="{{ path('app_front_admin_players', {status: 3}) }}">Rejected</a></li>
+                </ul>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="welcome-title">Admin</div>  
+                {% else %}
+                    <div class="welcome-title">{{ app.user.getDistrict().getName() }}</div>
+                {% endif %}
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -46,17 +50,14 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        {% if is_granted('ROLE_PROFESSIONAL') %}
-                            <li><a href="{{ path('app_front_admin_products') }}"><i class="fa fa-cubes fa-fw"></i>{{ 'menu.products' | trans }}</a></li>
-                        {% endif %}
                         {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('app_front_consumers') }}"><i class="fa fa-users fa-fw"></i>{{ 'menu.consumers' | trans }}</a></li>
                             <li><a href="{{ path('app_front_admin_products', {'_su': 'bebeto'}) }}"><i class="fa fa-user-md fa-fw"></i>{{ 'menu.switch_user' | trans }}</a></li>
                         {% endif %}
                         {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
                             <li><a href="{{ path('app_front_admin_products', {'_su': '_exit'}) }}"><i class="fa fa-user fa-fw"></i>{{ 'menu.switch_user_exit' | trans }}</a></li>
                         {% endif %}
-                        <li class="divider"></li>
+
+                        <li><a href="javascript:void(0)" ng-click="toggleModal($event)" formAction="{{ path('app_front_login_password_reset') }}" modalTitle="Reset Password" modalUrl="{{ path('app_front_login_password_reset') }}"><i class="fa fa-key fa-fw"></i> Password Reset</a></li>
                         <li><a href="{{ path('app_front_logout') }}"><i class="fa fa-sign-out fa-fw"></i> {{ 'menu.logout' | trans }}</a></li>
                     </ul>
                 </li>
@@ -88,19 +89,18 @@
             {% block content %}{% endblock %}
         </div>
     </div>
-    {% javascripts
-        'assets/vendor/jquery/jquery.min.js'
-        'assets/vendor/angular/angular.min.js'
-        'assets/vendor/bootstrap/dist/js/bootstrap.min.js'
-        'assets/vendor/bootstrap/js/modal.js'
-        'assets/vendor/bootstrap3-dialog/src/js/bootstrap-dialog.js'
-        'assets/vendor/bootstrap-validator/dist/validator.js'
-        'assets/vendor/metisMenu/dist/metisMenu.min.js'
-        'assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js'
-        '@AppFrontBundle/Resources/public/js/*'
-        output='js/compiled/main.js' %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/angular/angular.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/modal.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap3-dialog/src/js/bootstrap-dialog.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap-validator/dist/validator.js') }}"></script>
+    <script src="{{ asset('assets/vendor/metisMenu/dist/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('bundles/appfront/js/jquery.form.js') }}"></script>
+    <script src="{{ asset('bundles/appfront/js/modalForm.js') }}"></script>
+    <script src="{{ asset('bundles/appfront/js/page.js') }}"></script>
+    <script src="{{ asset('bundles/appfront/js/theme.js') }}"></script>
     <script>var TRANSLATIONS_LOCALE = "{{ app.request.locale }}"</script>
     <script src="{{ path('funddy_jstranslations', {locale: app.request.locale}) }}"></script>
     <script src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>

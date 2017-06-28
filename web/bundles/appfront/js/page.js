@@ -70,7 +70,7 @@ modal.controller('MainCtrl', function ($scope, $http) {
         } else {
             alert(Translator.trans('globals.error.something'));
         }
-        location.reload(true);
+        //location.reload(true);
     }
     
     $scope.processResponse = function(response){

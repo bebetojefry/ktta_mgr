@@ -120,3 +120,8 @@ app_front_admin_player_transfer:
     path:     /players/{id}/transfer
     host:     "%domain_admin%"
     defaults: { _controller: AppFrontBundle:Player:transfer }
+    
+app_front_admin_report:
+    path:     /report
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Player:report }

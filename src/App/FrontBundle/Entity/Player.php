@@ -247,7 +247,9 @@ class Player
      * @ORM\Column(name="status", type="integer")
      */
     private $status;
-
+    
+    private $age;
+    
     /**
      * Get id
      *
@@ -1103,5 +1105,46 @@ class Player
         $val = explode('-', $this->getPlayerId());
         $newId =  $this->getDistrict()->getCode().'-'.$val[1];
         $this->setPlayerId($newId);
+    }
+    
+    public function getAge() {
+        if($this->dob) {
+            $this->age = $this->dob->diff(new \DateTime('today'))->y;
+        }
+        
+        return $this->age;
+    }
+    
+    public function getAgeGroup() {
+        $group = null;
+        $age = $this->getAge();
+        
+        switch(true) {
+            case ($age >= 40): 
+                $group = 'Veteran';
+                break;
+            case ($age >= 21): 
+                $group = 'Men';
+                break;
+            case ($age < 10): 
+                $group = 'Mini cadet';
+                break;
+            case ($age < 12): 
+                $group = 'Cadet';
+                break;
+            case ($age < 14): 
+                $group = 'Sub junior';
+                break;
+            case ($age < 18): 
+                $group = 'Juniors';
+                break;
+            case ($age < 21): 
+                $group = 'Youth';
+                break;
+            default:
+                $group = 'Mini cadet';
+        }
+        
+        return $group;
     }
 }

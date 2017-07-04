@@ -38,6 +38,9 @@
                     <li><a href="{{ path('app_front_admin_players', {status: 2}) }}">Submitted</a></li>
                     <li><a href="{{ path('app_front_admin_players', {status: 1}) }}">Approved</a></li>
                     <li><a href="{{ path('app_front_admin_players', {status: 3}) }}">Rejected</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('app_front_admin_report') }}">Report</a></li>
+                    {% endif %}
                 </ul>
                 {% if is_granted('ROLE_ADMIN') %}
                     <div class="welcome-title">Admin</div>  

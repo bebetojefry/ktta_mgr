@@ -1,6 +1,6 @@
 <?php
 ob_start();
-session_start();
+@session_start();
 
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;

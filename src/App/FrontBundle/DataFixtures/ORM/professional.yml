@@ -5,7 +5,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9999999999
         username: admin
-        password: ktta_admin123
+        password: d44m1hqx0vqjvhak
         locale: en
         status: true        
     dist_user_1:
@@ -14,7 +14,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9447020713
         username: ktta_ksd
-        password: ktta_ksd123
+        password: opjn0z8ktl9wifcl
         locale: en
         status: true
         district: @district_1
@@ -24,7 +24,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9495142986
         username: ktta_knr
-        password: ktta_knr123
+        password: km51k0xo7zq9yqz8
         locale: en
         status: true
         district: @district_2
@@ -34,7 +34,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9539386376
         username: ktta_wyd
-        password: ktta_wyd123
+        password: ayz9c88nogwbb6x8
         locale: en
         status: true
         district: @district_3
@@ -44,7 +44,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9847476516
         username: ktta_kkd
-        password: ktta_kkd123
+        password: 82bqvqnx7xjf89yy
         locale: en
         status: true
         district: @district_4
@@ -54,7 +54,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9447607597
         username: ktta_mlp
-        password: ktta_mlp123
+        password: zq86emak31dlz63c
         locale: en
         status: true
         district: @district_5
@@ -64,7 +64,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9447778732
         username: ktta_pkd
-        password: ktta_pkd123
+        password: oijv1tnie8u6vtr3
         locale: en
         status: true
         district: @district_6
@@ -74,7 +74,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9446533622
         username: ktta_tcr
-        password: ktta_tcr123
+        password: 7tjsk97sbowbbpv9
         locale: en
         status: true
         district: @district_7
@@ -84,7 +84,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9497023353
         username: ktta_ekm
-        password: ktta_ekm123
+        password: b2444bku00oetexu
         locale: en
         status: true
         district: @district_8
@@ -94,7 +94,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9497546300
         username: ktta_idk
-        password: ktta_idk123
+        password: 47xcfq0lruteqzqt
         locale: en
         status: true
         district: @district_9
@@ -104,7 +104,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9847031757
         username: ktta_ktm
-        password: ktta_ktm123
+        password: nl641ly0h2ga6yaj
         locale: en
         status: true
         district: @district_10
@@ -114,7 +114,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9446089360
         username: ktta_alp
-        password: ktta_alp123
+        password: 5aixf7o1zp1z3cue
         locale: en
         status: true
         district: @district_11
@@ -124,7 +124,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9447963484
         username: ktta_pta
-        password: ktta_pta123
+        password: kp8wf8xhu6qvb81r
         locale: en
         status: true
         district: @district_12
@@ -134,7 +134,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9995804907
         username: ktta_klm
-        password: ktta_klm123
+        password: z07i6m090ymjn9wc
         locale: en
         status: true
         district: @district_13
@@ -144,7 +144,7 @@ App\FrontBundle\Entity\Professional:
         gender: 1
         phone: 9037044471
         username: ktta_tvm
-        password: ktta_tvm123
+        password: q44ntu579pm5j11u
         locale: en
         status: true
         district: @district_14

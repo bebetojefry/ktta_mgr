@@ -41,7 +41,8 @@
                                 <span class="player-id">KTTA ID: {{ player.getPlayerId() }}</span>
                             </div>
                             <div class="col-md-6 col-sm-6 head-block">
-                                <span class="title">KERALA TABLE TENNIS ASSOCIATION</span>
+                                <span class="title">KERALA TABLE TENNIS ASSOCIATION</span><br/><br/>
+                                <span style="margin: 0 auto;display: block;text-align: center; margin-left: 65px;">PLAYER REGISTRATION</span>
                             </div>
                             <div class="col-md-3 col-sm-3 head-block">
                                 <img class="player-photo" src="{{ asset('uploads/players/'~player.getPhoto()) }}" />
@@ -53,10 +54,8 @@
                                 <td colspan="3">{{ player.getYear() }}</td>
                             </tr>
                             <tr>
-                                <td>State</td>
-                                <td>{{ player.getDistrict().getState().getStateName() }}</td>
-                                <td style="width: 250px;">District</td>
-                                <td>{{ player.getDistrict().getName() }}</td>
+                                <td>District</td>
+                                <td colspan="3">{{ player.getDistrict().getName() }}</td>
                             </tr>
                             <tr>
                                 <td>First Name</td>
@@ -152,9 +151,7 @@
                             </tr>
                             <tr>
                                 <td>Weight</td>
-                                <td>{{ player.getWeight() }}</td>
-                                <td style="width: 250px;">Weight</td>
-                                <td></td>
+                                <td colspan="3">{{ player.getWeight() }}</td>
                             </tr>
                             <tr>
                                 <td>District to which registered</td>

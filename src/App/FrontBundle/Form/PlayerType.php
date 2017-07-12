@@ -29,13 +29,13 @@ class PlayerType extends AbstractType
             ))
             ->add($builder->create('dob', 'text')->addModelTransformer($dateTransformer))
             ->add('birthPlace')
-            ->add('perAddress')
+            ->add('perAddress', 'textarea', array('label' => 'Permanent Address'))
             ->add('email')
-            ->add('tel')
-            ->add('mob')
-            ->add('schoolAddress')
-            ->add('studyClass')
-            ->add('officeAddress')
+            ->add('tel', 'text', array('label' => 'Land line Phone No', 'required' => false))
+            ->add('mob', 'text', array('label' => 'Mobile No'))
+            ->add('schoolAddress', 'textarea', array('label' => 'College/School Address', 'required' => false))
+            ->add('studyClass', 'text', array('required' => false))
+            ->add('officeAddress', 'textarea', array('required' => false))
             ->add('bloodGroup', 'choice', array(
                 'choices' => array(
                     'O+' => 'O+',
@@ -50,15 +50,15 @@ class PlayerType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ))
-            ->add('passportName')
-            ->add('otherName')
-            ->add('passportNo')
-            ->add('passportIssuePlace')
-            ->add($builder->create('passportIssueDate', 'text')->addModelTransformer($dateTransformer))
-            ->add($builder->create('passportExpiryDate', 'text')->addModelTransformer($dateTransformer))
-            ->add('height')
-            ->add('weight')
-            ->add('year')
+            ->add('passportName', 'text', array('required' => false))
+            ->add('otherName', 'text', array('required' => false))
+            ->add('passportNo', 'text', array('required' => false))
+            ->add('passportIssuePlace', 'text', array('required' => false))
+            ->add($builder->create('passportIssueDate', 'text', array('required' => false))->addModelTransformer($dateTransformer))
+            ->add($builder->create('passportExpiryDate', 'text', array('required' => false))->addModelTransformer($dateTransformer))
+            ->add('height', 'text', array('label' => 'Height(cms)'))
+            ->add('weight', 'text', array('label' => 'Weight(kgs)'))
+            ->add('year', 'text', array('label' => 'Year of registration'))
             ->add('photo', 'file', array('data_class' => null, 'required' => $isEdit))
             ->add('birthCertificate', 'file', array('data_class' => null, 'required' => $isEdit))
             ->add('birthState', 'entity', array(
@@ -67,7 +67,7 @@ class PlayerType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ))
-            ->add('Submit', 'submit', array('label' => 'player.submit'));
+            ->add('Submit', 'submit', array('label' => 'player.submit', 'attr' => array('class' => 'btn-primary')));
     }
     
     /**

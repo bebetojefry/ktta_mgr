@@ -18,7 +18,7 @@ class DatetoStringTransformer implements DataTransformerInterface
     public function reverseTransform($date)
     {
         if(null === $date){
-            return new \DateTime('now');
+            return $date;
         }
 
         return \DateTime::createFromFormat('d/m/Y', $date);

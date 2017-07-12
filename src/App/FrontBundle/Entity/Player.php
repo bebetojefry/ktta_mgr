@@ -112,7 +112,7 @@ class Player
     /**
      * @var string
      *
-     * @ORM\Column(name="tel", type="string", length=255)
+     * @ORM\Column(name="tel", type="string", length=255, nullable=true)
      */
     private $tel;
 
@@ -126,21 +126,21 @@ class Player
     /**
      * @var string
      *
-     * @ORM\Column(name="school_address", type="text")
+     * @ORM\Column(name="school_address", type="text", nullable=true)
      */
     private $schoolAddress;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="study_class", type="string", length=255)
+     * @ORM\Column(name="study_class", type="string", length=255, nullable=true)
      */
     private $studyClass;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="office_address", type="text")
+     * @ORM\Column(name="office_address", type="text", nullable=true)
      */
     private $officeAddress;
 
@@ -154,42 +154,42 @@ class Player
     /**
      * @var string
      *
-     * @ORM\Column(name="passport_name", type="string", length=255)
+     * @ORM\Column(name="passport_name", type="string", length=255, nullable=true)
      */
     private $passportName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="other_name", type="string", length=255)
+     * @ORM\Column(name="other_name", type="string", length=255, nullable=true)
      */
     private $otherName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="passport_no", type="string", length=255)
+     * @ORM\Column(name="passport_no", type="string", length=255, nullable=true)
      */
     private $passportNo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="passport_issue_place", type="string", length=255)
+     * @ORM\Column(name="passport_issue_place", type="string", length=255, nullable=true)
      */
     private $passportIssuePlace;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="passport_issue_date", type="date")
+     * @ORM\Column(name="passport_issue_date", type="date", nullable=true)
      */
     private $passportIssueDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="passport_expiry_date", type="date")
+     * @ORM\Column(name="passport_expiry_date", type="date", nullable=true)
      */
     private $passportExpiryDate;
 

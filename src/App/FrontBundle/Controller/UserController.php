@@ -91,4 +91,43 @@ class UserController extends Controller
         
         return new Response(json_encode(array('code' => $code, 'data' => $body)));
     }
+    
+    public function switchAction(Request $request) {
+        $dm = $this->getDoctrine()->getManager();
+        $obj = new \stdClass();
+        $obj->district = $dm->getRepository('AppFrontBundle:District')->find(1);
+        $form = $this->createFormBuilder($obj)
+            ->add('district', 'entity', array(
+                'class' => 'AppFrontBundle:District',
+                'property' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+            ))
+            ->add('submit', 'submit', array('attr' => array('class' => 'btn btn-primary')))
+            ->getForm();
+        
+        $code = FormHelper::FORM;
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+            if($form->isValid()){
+                $obj = $form->getData();
+                $user = $dm->getRepository('AppFrontBundle:User')->findOneByDistrict($obj->district);
+                if($user){
+                    $this->get('session')->getFlashBag()->add('success', 'User switched to '.$obj->district->getName());
+                    $code = FormHelper::REDIRECT;
+                    $url = $this->generateUrl('app_front_admin_all_players', array('_su' => $user->getUsername()));
+                    return new Response(json_encode(array('code' => $code, 'data' => '', 'url' => $url)));
+                }
+            }
+            
+            $code = FormHelper::REFRESH;
+            $this->get('session')->getFlashBag()->add('error', 'Unable to switch user');
+        }
+        
+        $body = $this->renderView('AppFrontBundle:User:switch.html.twig',
+            array('form' => $form->createView())
+        );
+        
+        return new Response(json_encode(array('code' => $code, 'data' => $body)));
+    }
 }

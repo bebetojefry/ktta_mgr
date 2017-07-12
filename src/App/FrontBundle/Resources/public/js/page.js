@@ -17,6 +17,9 @@ modal.controller('MainCtrl', function ($scope, $http) {
     $scope.showModal = false;
     $scope.toggleModal = function(obj){
         $scope.modalTitle = obj.target.attributes.modalTitle.value;
+        $('.loading').show();
+        $('.modal-dialog').attr('class', 'modal-dialog');
+        $('.modal-dialog').addClass(obj.target.attributes.modalTitle.value.replace(/ /g,"_").toLowerCase());
         $http.get(obj.target.attributes.modalUrl.value)
         .success(function (response) {
             $scope.processResponse(response);
@@ -28,6 +31,9 @@ modal.controller('MainCtrl', function ($scope, $http) {
         
         $scope.formAction = obj.target.attributes.formAction.value;
         $('#modal-form').ajaxForm({
+            beforeSubmit: function(arr, $form, options) {
+                $('.loading').show();
+            },
             success: function(response) {
                 $scope.processResponse(response);
             },
@@ -46,6 +52,7 @@ modal.controller('MainCtrl', function ($scope, $http) {
                 cssClass: 'btn-primary',
                 action: function(dialog) {
                     dialog.close();
+                    $('.loading').show();
                     $http.get(obj.target.attributes.targetUrl.value)
                     .success(function (response) {
                         $scope.processResponse(response);
@@ -65,6 +72,7 @@ modal.controller('MainCtrl', function ($scope, $http) {
     };
     
     $scope.errorhandler = function(response){
+        $('.loading').hide();
         if(response.status == 304){
             alert(Translator.trans('globals.session.expired'));
         } else {
@@ -77,9 +85,11 @@ modal.controller('MainCtrl', function ($scope, $http) {
         try { response = jQuery.parseJSON(response); } catch(err) {}
         switch(response.code){
             case 'FORM':
+                $('.loading').hide();
                 $scope.modalHtml = response.data;
                 break;
             case 'FORM_REFRESH':
+                $('.loading').hide();
                 $scope.$apply(function() {
                     $scope.modalHtml = response.data;
                 });

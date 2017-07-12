@@ -8,13 +8,13 @@
         {{ form_row(form.gender) }}
         {{ form_row(form.dob) }}
         {{ form_row(form.birthPlace) }}
+        {{ form_row(form.birthState) }}
         {{ form_row(form.perAddress) }}
         {{ form_row(form.email) }}
         {{ form_row(form.tel) }}
         {{ form_row(form.mob) }}
         {{ form_row(form.schoolAddress) }}
         {{ form_row(form.studyClass) }}
-        {{ form_row(form.officeAddress) }}
     </div>
     <div class="col-md-6">
         {{ form_rest(form) }}
@@ -22,7 +22,27 @@
     {{ form_errors(form) }}
 </div>
 <script type="text/javascript">
-    $('#{{ form.dob.vars.id }}').datepicker({});
-    $('#{{ form.passportIssueDate.vars.id }}').datepicker({});
-    $('#{{ form.passportExpiryDate.vars.id }}').datepicker({});
+    $('#{{ form.dob.vars.id }}').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true
+    });
+    
+    $('#{{ form.passportIssueDate.vars.id }}').datepicker({
+        format: 'dd/mm/yyyy',
+        endDate: '-1d',
+        autoclose: true
+    }).on('changeDate',function(e){
+        $('#{{ form.passportExpiryDate.vars.id }}').datepicker('destroy');
+        $('#{{ form.passportExpiryDate.vars.id }}').datepicker({
+            startDate: e.date,
+            format: 'dd/mm/yyyy',
+            autoclose: true
+        });
+    });
+    
+    $('#{{ form.passportExpiryDate.vars.id }}').datepicker({
+        startDate: '{{ form.passportIssueDate.vars.value }}',
+        format: 'dd/mm/yyyy',
+        autoclose: true
+    });
 </script>

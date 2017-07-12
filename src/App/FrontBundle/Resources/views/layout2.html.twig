@@ -27,9 +27,10 @@
                 </form>
             </modal>
         </div>
+        <div class="loading">Loading&#8230;</div>
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <img src="{{ asset('images/logo.jpg') }}" style="margin: 15px 30px;" />
+                <img src="{{ asset('images/logo.jpg') }}" style="margin: 15px 30px; visibility: hidden;" />
             </div>
             <div id="topnav">
                 <ul>
@@ -55,21 +56,15 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('app_front_admin_products', {'_su': 'bebeto'}) }}"><i class="fa fa-user-md fa-fw"></i>{{ 'menu.switch_user' | trans }}</a></li>
+                            <li><a href="javascript:void(0)" ng-click="toggleModal($event)" formAction="{{ path('app_front_switch_user') }}" modalTitle="Switch User" modalUrl="{{ path('app_front_switch_user') }}"><i class="fa fa-user-md fa-fw"></i>{{ 'menu.switch_user' | trans }}</a></li>
                         {% endif %}
                         {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-                            <li><a href="{{ path('app_front_admin_products', {'_su': '_exit'}) }}"><i class="fa fa-user fa-fw"></i>{{ 'menu.switch_user_exit' | trans }}</a></li>
+                            <li><a href="{{ path('app_front_admin_all_players', {'_su': '_exit'}) }}"><i class="fa fa-user fa-fw"></i>{{ 'menu.switch_user_exit' | trans }}</a></li>
                         {% endif %}
 
                         <li><a href="javascript:void(0)" ng-click="toggleModal($event)" formAction="{{ path('app_front_login_password_reset') }}" modalTitle="Reset Password" modalUrl="{{ path('app_front_login_password_reset') }}"><i class="fa fa-key fa-fw"></i> Password Reset</a></li>
                         <li><a href="{{ path('app_front_logout') }}"><i class="fa fa-sign-out fa-fw"></i> {{ 'menu.logout' | trans }}</a></li>
                     </ul>
-                </li>
-                <li>
-                    {#<div class="lang_container">
-                        <a {% if app.request.locale == 'en' %}class="active_locale"{% endif %} href="{{ path('set_lang', {_locale: 'en', route: path(app.request.get('_route'), app.request.get('_route_params')) | urlencrypt}) }}"><img src="{{ asset('bundles/appfront/images/flag_en.png') }}" /></a>
-                        <a {% if app.request.locale == 'de' %}class="active_locale"{% endif %} href="{{ path('set_lang', {_locale: 'de', route: path(app.request.get('_route'), app.request.get('_route_params')) | urlencrypt}) }}"><img src="{{ asset('bundles/appfront/images/flag_de.png') }}" /></a>
-                    </div>#}
                 </li>
             </ul>
         </nav>

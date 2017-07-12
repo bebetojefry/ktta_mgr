@@ -125,3 +125,7 @@ app_front_admin_report:
     path:     /report
     host:     "%domain_admin%"
     defaults: { _controller: AppFrontBundle:Player:report }
+    
+app_front_switch_user:
+    path:     /user/switch
+    defaults: { _controller: AppFrontBundle:User:switch }

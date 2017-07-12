@@ -1,5 +1,5 @@
 login:
-    headline: Please Sign In
+    headline: User Login
     username: Username
     password: Password
     remember_me: Keep me logged in

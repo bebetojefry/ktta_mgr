@@ -17,9 +17,9 @@ use App\FrontBundle\Helper\FormHelper;
 class PlayerController extends Controller {
     
     public function allAction(Request $request) {
-        $condition = array();
+        $condition = 'p.status != :rejected';
         if($district = $this->getUser()->getDistrict()){
-            $condition['district'] = $district;
+            $condition .= ' AND p.district = :district';
         }
         
         $status = array(
@@ -30,7 +30,17 @@ class PlayerController extends Controller {
             
         );
         
-        $players = $this->getDoctrine()->getManager()->getRepository('AppFrontBundle:Player')->findBy($condition);
+        $qb = $this->getDoctrine()->getManager()->createQueryBuilder()->select('p')
+            ->from('AppFrontBundle:Player', 'p')
+            ->where($condition)
+            ->setParameter('rejected', Player::REJECTED);
+        
+        if($district) {
+            $qb->setParameter('district', $district);
+        }
+        
+        $players = $qb->getQuery()->getResult();
+        
         return $this->render('AppFrontBundle:Player:index.html.twig', array(
             'players' => $players,
             'status' => $status

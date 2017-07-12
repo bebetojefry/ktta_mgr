@@ -161,14 +161,14 @@
                         <table class="sign-footer">
                             <tr>
                                 <td>
-                                    <div class="col-md-6 col-sm-6 head-block">
+                                    <div class="col-md-12 col-sm-6 head-block">
                                         <span>Signature:</span>
                                         <span>Player/Guardian:</span>
                                         <span>Date:</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="col-md-6 col-sm-6 head-block">
+                                    <div class="col-md-12 col-sm-6 head-block">
                                         <span>Signature:</span>
                                         <span>Secretary-KTTA:</span>
                                         <span>Seal & Date:</span>
@@ -177,16 +177,16 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="col-md-6 col-sm-6 head-block">
+                                    <div class="col-md-12 col-sm-6 head-block">
                                         <span>Signature:</span>
                                         <span>District Secretary:</span>
                                         <span>Seal & Date:</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="col-md-6 col-sm-6 head-block">
-                                        <span>Reciept Number:</span>
-                                        <span>Date of Payment:</span>
+                                    <div class="col-md-12 col-sm-6 head-block">
+                                        <span>Reciept Number: {{ player.getRecieptNo() }}</span>
+                                        <span>Date of Payment: {{ player.getPayDate()|date('d/m/Y') }}</span>
                                         <span>Amount:</span>
                                     </div>
                                 </td>

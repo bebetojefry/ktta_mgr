@@ -248,6 +248,20 @@ class Player
      */
     private $status;
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reciept_no", type="string", length=255, nullable=true)
+     */
+    private $recieptNo;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pay_date", type="date", nullable=true)
+     */
+    private $payDate;
+    
     private $age;
     
     /**
@@ -1146,5 +1160,53 @@ class Player
         }
         
         return $group;
+    }
+
+    /**
+     * Set recieptNo
+     *
+     * @param string $recieptNo
+     *
+     * @return Player
+     */
+    public function setRecieptNo($recieptNo)
+    {
+        $this->recieptNo = $recieptNo;
+
+        return $this;
+    }
+
+    /**
+     * Get recieptNo
+     *
+     * @return string
+     */
+    public function getRecieptNo()
+    {
+        return $this->recieptNo;
+    }
+
+    /**
+     * Set payDate
+     *
+     * @param \DateTime $payDate
+     *
+     * @return Player
+     */
+    public function setPayDate($payDate)
+    {
+        $this->payDate = $payDate;
+
+        return $this;
+    }
+
+    /**
+     * Get payDate
+     *
+     * @return \DateTime
+     */
+    public function getPayDate()
+    {
+        return $this->payDate;
     }
 }

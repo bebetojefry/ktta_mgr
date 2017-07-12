@@ -9,6 +9,12 @@ use App\FrontBundle\DataTransformer\DatetoStringTransformer;
 
 class PlayerType extends AbstractType
 {
+    private $is_admin;
+    
+    public function __construct($is_admin = false) {
+        $this->is_admin = $is_admin;
+    }
+    
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -66,8 +72,14 @@ class PlayerType extends AbstractType
                 'property' => 'stateName',
                 'multiple' => false,
                 'expanded' => false,
-            ))
-            ->add('Submit', 'submit', array('label' => 'player.submit', 'attr' => array('class' => 'btn-primary')));
+            ));
+        
+            if($this->is_admin){
+                $builder->add('recieptNo', 'text', array('label' => 'Reciept No', 'required' => false))
+                        ->add($builder->create('payDate', 'text', array('label' => 'Date of payment', 'required' => false))->addModelTransformer($dateTransformer));
+            }
+            
+            $builder->add('Submit', 'submit', array('label' => 'player.submit', 'attr' => array('class' => 'btn-primary')));
     }
     
     /**

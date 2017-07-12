@@ -45,4 +45,12 @@
         format: 'dd/mm/yyyy',
         autoclose: true
     });
+    
+    {% if form.payDate is defined %}
+        $('#{{ form.payDate.vars.id }}').datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true
+        });
+    {% endif %}
+    
 </script>

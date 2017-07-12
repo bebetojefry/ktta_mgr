@@ -97,7 +97,8 @@ class PlayerController extends Controller {
     
     public function editAction(Request $request, Player $player) {
         $dm = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new PlayerType(), $player);
+        $form = $this->createForm(new PlayerType($this->get('security.context')
+                                           ->isGranted('ROLE_ADMIN')), $player);
         $code = FormHelper::FORM;
         if($request->isMethod('POST')){
             $form->handleRequest($request);

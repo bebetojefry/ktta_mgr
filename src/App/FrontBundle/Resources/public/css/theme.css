@@ -732,3 +732,7 @@ span.required {
     display: inline-block;
     margin-right: 20px;
 }
+
+.form-control[readonly] {
+    background-color: #FFF;
+}

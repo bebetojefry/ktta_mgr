@@ -33,7 +33,7 @@ class PlayerType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ))
-            ->add($builder->create('dob', 'text', array('label' => 'Date of Birth'))->addModelTransformer($dateTransformer))
+            ->add($builder->create('dob', 'text', array('label' => 'Date of Birth', 'attr' => array('readonly' => true)))->addModelTransformer($dateTransformer))
             ->add('birthPlace')
             ->add('perAddress', 'textarea', array('label' => 'Permanent Address'))
             ->add('email')
@@ -60,8 +60,8 @@ class PlayerType extends AbstractType
             ->add('otherName', 'text', array('required' => false))
             ->add('passportNo', 'text', array('required' => false))
             ->add('passportIssuePlace', 'text', array('required' => false))
-            ->add($builder->create('passportIssueDate', 'text', array('required' => false))->addModelTransformer($dateTransformer))
-            ->add($builder->create('passportExpiryDate', 'text', array('required' => false))->addModelTransformer($dateTransformer))
+            ->add($builder->create('passportIssueDate', 'text', array('required' => false, 'attr' => array('readonly' => true)))->addModelTransformer($dateTransformer))
+            ->add($builder->create('passportExpiryDate', 'text', array('required' => false, 'attr' => array('readonly' => true)))->addModelTransformer($dateTransformer))
             ->add('height', 'number', array('label' => 'Height(cms)'))
             ->add('weight', 'number', array('label' => 'Weight(kgs)'))
             ->add('year', 'number', array('label' => 'Year of registration'))

@@ -18,7 +18,7 @@ class ApproveType extends AbstractType
         $dateTransformer = new DatetoStringTransformer();
         $builder
             ->add('recieptNo', 'text', array('label' => 'Reciept No', 'required' => true))
-            ->add($builder->create('payDate', 'text', array('label' => 'Date of payment', 'required' => true))->addModelTransformer($dateTransformer))
+            ->add($builder->create('payDate', 'text', array('label' => 'Date of payment', 'required' => true, 'attr' => array('readonly' => true)))->addModelTransformer($dateTransformer))
             ->add('Submit', 'submit', array('label' => 'player.submit', 'attr' => array('class' => 'btn-primary')));
     }
     

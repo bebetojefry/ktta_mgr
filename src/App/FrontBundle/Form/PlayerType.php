@@ -33,7 +33,7 @@ class PlayerType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ))
-            ->add($builder->create('dob', 'text')->addModelTransformer($dateTransformer))
+            ->add($builder->create('dob', 'text', array('label' => 'Date of Birth'))->addModelTransformer($dateTransformer))
             ->add('birthPlace')
             ->add('perAddress', 'textarea', array('label' => 'Permanent Address'))
             ->add('email')
@@ -62,9 +62,9 @@ class PlayerType extends AbstractType
             ->add('passportIssuePlace', 'text', array('required' => false))
             ->add($builder->create('passportIssueDate', 'text', array('required' => false))->addModelTransformer($dateTransformer))
             ->add($builder->create('passportExpiryDate', 'text', array('required' => false))->addModelTransformer($dateTransformer))
-            ->add('height', 'text', array('label' => 'Height(cms)'))
-            ->add('weight', 'text', array('label' => 'Weight(kgs)'))
-            ->add('year', 'text', array('label' => 'Year of registration'))
+            ->add('height', 'number', array('label' => 'Height(cms)'))
+            ->add('weight', 'number', array('label' => 'Weight(kgs)'))
+            ->add('year', 'number', array('label' => 'Year of registration'))
             ->add('photo', 'file', array('data_class' => null, 'required' => $isEdit))
             ->add('birthCertificate', 'file', array('data_class' => null, 'required' => $isEdit))
             ->add('birthState', 'entity', array(
@@ -73,11 +73,6 @@ class PlayerType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ));
-        
-            if($this->is_admin){
-                $builder->add('recieptNo', 'text', array('label' => 'Reciept No', 'required' => false))
-                        ->add($builder->create('payDate', 'text', array('label' => 'Date of payment', 'required' => false))->addModelTransformer($dateTransformer));
-            }
             
             $builder->add('Submit', 'submit', array('label' => 'player.submit', 'attr' => array('class' => 'btn-primary')));
     }

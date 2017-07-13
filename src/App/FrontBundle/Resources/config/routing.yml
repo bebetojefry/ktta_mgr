@@ -100,6 +100,11 @@ app_front_admin_edit_player:
     path:     /players/{id}/edit
     host:     "%domain_admin%"
     defaults: { _controller: AppFrontBundle:Player:edit }
+
+app_front_admin_approve_player:
+    path:     /players/{id}/approve
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Player:approve }
     
 app_front_admin_remove_player:
     path:     /players/{id}/delete

@@ -18,7 +18,7 @@
                     <button type="button" class="btn btn-primary btn-xs pull-right print-btn" print_elem_id="player-info">Print</button>
                     <button type="button" ng-click="toggleModal($event)" formAction="{{ path('app_front_admin_edit_player', {'id' : player.id }) }}" modalTitle="{{ 'player.title.edit' | trans }}" modalUrl="{{ path('app_front_admin_edit_player', {'id' : player.id }) }}" class="btn btn-primary btn-xs pull-right margin-right-10">{{ 'player.btn.edit' | trans }}</button>
                     {% if is_granted('ROLE_ADMIN') and player.getStatus() == constant('App\\FrontBundle\\Entity\\Player::SUBMITTED') %}
-                        <button type="button" ng-click="confirmExecuteUrl($event)" cofirmText="{{ 'player.msg.approveConfirm' | trans }}" targetUrl="{{ path('app_front_admin_player_status', {'id' : player.id, 'status': constant('App\\FrontBundle\\Entity\\Player::APPROVED') }) }}" class="btn btn-success btn-xs pull-right margin-right-10">Approve</button>
+                        <button type="button" ng-click="toggleModal($event)" formAction="{{ path('app_front_admin_approve_player', {'id' : player.id }) }}" modalTitle="Approve Player" modalUrl="{{ path('app_front_admin_approve_player', {'id' : player.id }) }}" class="btn btn-success btn-xs pull-right margin-right-10">Approve</button>
                     {% endif %}
                     
                     {% if is_granted('ROLE_ADMIN') %}

@@ -1,0 +1,17 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+<div class="row">
+    <div class="col-md-12">
+        {{ form_row(form.recieptNo) }}
+        {{ form_row(form.payDate) }}
+        {{ form_rest(form) }}
+    </div>
+    {{ form_errors(form) }}
+</div>
+<script type="text/javascript">
+    
+    $('#{{ form.payDate.vars.id }}').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true
+    });
+    
+</script>

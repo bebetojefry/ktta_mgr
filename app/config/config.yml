@@ -97,7 +97,7 @@ swiftmailer:
 
 # nzo url encryptor configuration
 nzo_url_encryptor:
-    secret: "%secret%"
+    secret_key: "%secret%"
 
 gregwar_image: ~
 

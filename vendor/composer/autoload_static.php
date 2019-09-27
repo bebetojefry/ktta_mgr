@@ -9,71 +9,24 @@ class ComposerStaticInit46f601c77bcc6eb1f4548441cb42b898
     public static $files = array (
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        'ce89ac35a6c330c55f4710717db9ff78' => __DIR__ . '/..' . '/kriswallsmith/assetic/src/functions.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '32dcc8afd4335739640db7d200c1971d' => __DIR__ . '/..' . '/symfony/polyfill-apcu/bootstrap.php',
-        'ce89ac35a6c330c55f4710717db9ff78' => __DIR__ . '/..' . '/kriswallsmith/assetic/src/functions.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '3fad0ebbff9928a94a9d8941fb314bd8' => __DIR__ . '/..' . '/symfony/symfony/src/Symfony/Component/Intl/Resources/stubs/functions.php',
     );
 
-    public static $prefixLengthsPsr4 = array (
-        'T' => 
-        array (
-            'Twig\\' => 5,
-        ),
-        'S' => 
-        array (
-            'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Component\\' => 18,
-            'Symfony\\Bundle\\SwiftmailerBundle\\' => 33,
-            'Symfony\\Bundle\\MonologBundle\\' => 29,
-            'Symfony\\Bundle\\AsseticBundle\\' => 29,
-            'Symfony\\Bundle\\' => 15,
-            'Symfony\\Bridge\\Twig\\' => 20,
-            'Symfony\\Bridge\\Swiftmailer\\' => 27,
-            'Symfony\\Bridge\\ProxyManager\\' => 28,
-            'Symfony\\Bridge\\PhpUnit\\' => 23,
-            'Symfony\\Bridge\\Monolog\\' => 23,
-            'Symfony\\Bridge\\Doctrine\\' => 24,
-            'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
-        ),
-        'P' => 
-        array (
-            'Psr\\Log\\' => 8,
-        ),
-        'N' => 
-        array (
-            'Nelmio\\Alice\\' => 13,
-        ),
-        'M' => 
-        array (
-            'Monolog\\' => 8,
-        ),
-        'L' => 
-        array (
-            'Leafo\\ScssPhp\\' => 14,
-        ),
-        'I' => 
-        array (
-            'Incenteev\\ParameterHandler\\' => 27,
-        ),
-        'H' => 
-        array (
-            'Hautelook\\AliceBundle\\' => 22,
-        ),
-        'F' => 
-        array (
-            'Faker\\' => 6,
-        ),
-        'D' => 
-        array (
-            'Doctrine\\Instantiator\\' => 22,
-            'Doctrine\\Common\\Cache\\' => 22,
-            'Doctrine\\Common\\' => 16,
-            'Doctrine\\Bundle\\FixturesBundle\\' => 31,
-            'Doctrine\\Bundle\\DoctrineCacheBundle\\' => 36,
-            'Doctrine\\Bundle\\DoctrineBundle\\' => 31,
-        ),
+    public static $firstCharsPsr4 = array (
+        'T' => true,
+        'S' => true,
+        'P' => true,
+        'N' => true,
+        'M' => true,
+        'L' => true,
+        'I' => true,
+        'H' => true,
+        'F' => true,
+        'D' => true,
     );
 
     public static $prefixDirsPsr4 = array (
@@ -136,6 +89,10 @@ class ComposerStaticInit46f601c77bcc6eb1f4548441cb42b898
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Nzo\\UrlEncryptorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nzo/url-encryptor-bundle',
         ),
         'Nelmio\\Alice\\' => 
         array (
@@ -223,13 +180,6 @@ class ComposerStaticInit46f601c77bcc6eb1f4548441cb42b898
             'PhpCollection' => 
             array (
                 0 => __DIR__ . '/..' . '/phpcollection/phpcollection/src',
-            ),
-        ),
-        'N' => 
-        array (
-            'Nzo\\UrlEncryptorBundle' => 
-            array (
-                0 => __DIR__ . '/..' . '/nzo/url-encryptor-bundle',
             ),
         ),
         'M' => 
@@ -351,7 +301,7 @@ class ComposerStaticInit46f601c77bcc6eb1f4548441cb42b898
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit46f601c77bcc6eb1f4548441cb42b898::$prefixLengthsPsr4;
+            $loader->firstCharsPsr4 = ComposerStaticInit46f601c77bcc6eb1f4548441cb42b898::$firstCharsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit46f601c77bcc6eb1f4548441cb42b898::$prefixDirsPsr4;
             $loader->fallbackDirsPsr4 = ComposerStaticInit46f601c77bcc6eb1f4548441cb42b898::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit46f601c77bcc6eb1f4548441cb42b898::$prefixesPsr0;

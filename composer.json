@@ -21,7 +21,7 @@
         "leaseweb/api-caller-bundle": "*",
         "leafo/lessphp": "^0.5.0",
         "leafo/scssphp": "^0.6.6",
-        "nzo/url-encryptor-bundle": "^3.1",
+        "nzo/url-encryptor-bundle": "^4.2",
         "gedmo/doctrine-extensions": "^2.4",
         "gregwar/image-bundle": "^2.1",
         "jms/serializer-bundle": "^1.1",

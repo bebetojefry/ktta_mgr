@@ -21,6 +21,7 @@ return array(
     'Symfony\\Bridge\\Doctrine\\' => array($vendorDir . '/symfony/symfony/src/Symfony/Bridge/Doctrine'),
     'Sensio\\Bundle\\FrameworkExtraBundle\\' => array($vendorDir . '/sensio/framework-extra-bundle'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Nzo\\UrlEncryptorBundle\\' => array($vendorDir . '/nzo/url-encryptor-bundle'),
     'Nelmio\\Alice\\' => array($vendorDir . '/nelmio/alice/src/Nelmio/Alice'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Leafo\\ScssPhp\\' => array($vendorDir . '/leafo/scssphp/src'),

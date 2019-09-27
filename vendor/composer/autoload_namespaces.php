@@ -12,7 +12,6 @@ return array(
     'SensioLabs\\Security' => array($vendorDir . '/sensiolabs/security-checker'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src'),
     'PhpCollection' => array($vendorDir . '/phpcollection/phpcollection/src'),
-    'Nzo\\UrlEncryptorBundle' => array($vendorDir . '/nzo/url-encryptor-bundle'),
     'Metadata\\' => array($vendorDir . '/jms/metadata/src'),
     'Lsw\\ApiCallerBundle' => array($vendorDir . '/leaseweb/api-caller-bundle'),
     'JMS\\SerializerBundle' => array($vendorDir . '/jms/serializer-bundle'),
